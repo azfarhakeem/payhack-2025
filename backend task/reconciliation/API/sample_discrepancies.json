@@ -1,0 +1,345 @@
+[
+  {
+    "id": "disc_001",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_002",
+    "transactionRef": "TXN-2024-002",
+    "type": "amount-mismatch",
+    "severity": "low",
+    "description": "Cashier amount ($8,320.00) rounded down from PSP amount ($8,320.50). Difference: $0.50. ERP synced from PSP feed and matches original.",
+    "variance": "$0.50",
+    "pspValue": {
+      "amount": "$8,320.50",
+      "description": "Mastercard deposit processed by PSP",
+      "status": "Processed",
+      "timestamp": "2024-01-15 10:15:02"
+    },
+    "cashierValue": {
+      "amount": "$8,320.00",
+      "description": "Amount rounded down during manual entry",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 10:15:05"
+    },
+    "erpValue": {
+      "amount": "$8,320.50",
+      "description": "Synced from PSP feed — original amount",
+      "status": "Verified",
+      "timestamp": "2024-01-15 10:15:10"
+    },
+    "suggestedResolution": "Manual rounding error in cashier system. Update cashier amount to $8,320.50 to match PSP and ERP. Review cashier manual entry process to prevent future rounding.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_002",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_003",
+    "transactionRef": "TXN-2024-003",
+    "type": "amount-mismatch",
+    "severity": "high",
+    "description": "Significant amount mismatch: PSP ($5,200.00) vs Cashier ($5,500.00). Difference: $300.00. Cashier may have included processing fee in recorded amount.",
+    "variance": "$300.00",
+    "pspValue": {
+      "amount": "$5,200.00",
+      "description": "Wire transfer received from client account",
+      "status": "Processed",
+      "timestamp": "2024-01-15 11:00:01"
+    },
+    "cashierValue": {
+      "amount": "$5,500.00",
+      "description": "Cashier recorded with processing fee included",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 11:00:04"
+    },
+    "erpValue": {
+      "amount": "$5,200.00",
+      "description": "ERP entry matches PSP net amount",
+      "status": "Verified",
+      "timestamp": "2024-01-15 11:00:07"
+    },
+    "suggestedResolution": "Cashier recorded gross + fee ($5,500) instead of gross only ($5,200). Verify with cashier team whether $300 is the processing fee. Adjust cashier entry to $5,200.00 and move fee to separate field.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_003",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_004",
+    "transactionRef": "TXN-2024-004",
+    "type": "missing",
+    "severity": "critical",
+    "description": "Cashier record missing for TXN-2024-004. PSP ($3,150.75) and ERP ($3,150.75) match, but no corresponding entry found in cashier system. Sync timeout detected.",
+    "variance": "N/A",
+    "pspValue": {
+      "amount": "$3,150.75",
+      "description": "e-Wallet withdrawal processed",
+      "status": "Processed",
+      "timestamp": "2024-01-15 11:45:01"
+    },
+    "cashierValue": null,
+    "erpValue": {
+      "amount": "$3,150.75",
+      "description": "Debit posted from PSP API sync",
+      "status": "Verified",
+      "timestamp": "2024-01-15 11:45:06"
+    },
+    "suggestedResolution": "Network timeout during cashier sync. Auto-retry scheduled in 5 minutes. If retry fails, manually create cashier entry from PSP source data. Escalate to IT if sync timeouts persist.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_004",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_006",
+    "transactionRef": "TXN-2024-006",
+    "type": "fee",
+    "severity": "low",
+    "description": "ERP includes $0.75 processing fee not reflected in PSP or Cashier amounts. PSP and Cashier agree at $7,250.25, ERP shows $7,251.00.",
+    "variance": "$0.75",
+    "pspValue": {
+      "amount": "$7,250.25",
+      "description": "Crypto deposit converted to fiat",
+      "status": "Processed",
+      "timestamp": "2024-01-15 13:15:01"
+    },
+    "cashierValue": {
+      "amount": "$7,250.25",
+      "description": "Cashier entry matches PSP amount",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 13:15:04"
+    },
+    "erpValue": {
+      "amount": "$7,251.00",
+      "description": "ERP includes $0.75 processing fee",
+      "status": "Verified",
+      "timestamp": "2024-01-15 13:15:08"
+    },
+    "suggestedResolution": "ERP added $0.75 gateway fee automatically. This matches the PSP fee schedule for crypto conversions. Auto-adjustment recommended — mark as reconciled with fee note.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_005",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_007",
+    "transactionRef": "TXN-2024-007",
+    "type": "missing",
+    "severity": "critical",
+    "description": "ERP record missing for TXN-2024-007. PSP ($2,100.00) and Cashier ($2,100.00) match, but no ERP entry found. API timeout during sync.",
+    "variance": "N/A",
+    "pspValue": {
+      "amount": "$2,100.00",
+      "description": "Debit card withdrawal via gateway",
+      "status": "Processed",
+      "timestamp": "2024-01-15 14:00:01"
+    },
+    "cashierValue": {
+      "amount": "$2,100.00",
+      "description": "Withdrawal logged in cashier system",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 14:00:03"
+    },
+    "erpValue": null,
+    "suggestedResolution": "ERP API timeout on first sync attempt. Auto-retry scheduled. If retry succeeds, mark as reconciled. If not, manually post ERP debit entry from PSP/Cashier source data.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_006",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_008",
+    "transactionRef": "TXN-2024-008",
+    "type": "fx-rate",
+    "severity": "medium",
+    "description": "FX rate difference: PSP/Cashier used settlement rate ($4,500.00), ERP booked at different rate ($4,480.00). Differential: 0.44% ($20.00).",
+    "variance": "$20.00",
+    "pspValue": {
+      "amount": "$4,500.00",
+      "description": "FX conversion — USD to EUR deposit",
+      "status": "Processed",
+      "timestamp": "2024-01-15 14:30:01",
+      "fxRate": 1.0842
+    },
+    "cashierValue": {
+      "amount": "$4,500.00",
+      "description": "Cashier recorded at settlement rate",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 14:30:04",
+      "fxRate": 1.0842
+    },
+    "erpValue": {
+      "amount": "$4,480.00",
+      "description": "ERP booked at different FX rate (0.44% diff)",
+      "status": "Verified",
+      "timestamp": "2024-01-15 14:30:09",
+      "fxRate": 1.0794
+    },
+    "suggestedResolution": "FX rate moved between settlement time (1.0842) and ERP booking time (1.0794). Variance is within 1% tolerance band. Review FX booking policy — consider using settlement rate consistently.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_007",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_009",
+    "transactionRef": "TXN-2024-009",
+    "type": "timing",
+    "severity": "medium",
+    "description": "ERP posted next-day settlement value ($9,720.00) instead of same-day value ($9,750.00). PSP and Cashier agree at $9,750.00. Timing-related amount drift.",
+    "variance": "$30.00",
+    "pspValue": {
+      "amount": "$9,750.00",
+      "description": "Batch settlement from payment processor",
+      "status": "Processed",
+      "timestamp": "2024-01-15 15:00:01"
+    },
+    "cashierValue": {
+      "amount": "$9,750.00",
+      "description": "Settlement recorded same day",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 15:00:03"
+    },
+    "erpValue": {
+      "amount": "$9,720.00",
+      "description": "ERP posted next-day settlement value",
+      "status": "Verified",
+      "timestamp": "2024-01-15 15:00:12"
+    },
+    "suggestedResolution": "ERP batch runs on T+1, causing settlement value to differ by $30.00 due to end-of-day adjustments. Confirm with ERP team whether posting schedule can be moved to T+0.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_008",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_012",
+    "transactionRef": "TXN-2024-012",
+    "type": "fee",
+    "severity": "low",
+    "description": "ERP deducted $1.50 gateway fee from posted amount. PSP and Cashier show $1,450.00, ERP shows $1,448.50.",
+    "variance": "$1.50",
+    "pspValue": {
+      "amount": "$1,450.00",
+      "description": "Skrill deposit via PSP integration",
+      "status": "Processed",
+      "timestamp": "2024-01-15 16:15:01"
+    },
+    "cashierValue": {
+      "amount": "$1,450.00",
+      "description": "E-wallet deposit logged",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 16:15:03"
+    },
+    "erpValue": {
+      "amount": "$1,448.50",
+      "description": "ERP deducted $1.50 gateway fee",
+      "status": "Verified",
+      "timestamp": "2024-01-15 16:15:08"
+    },
+    "suggestedResolution": "ERP auto-deducted gateway fee from posted amount. Fee matches ERP fee ledger ($1.50 for Skrill e-wallet). Auto-adjustment recommended — mark as reconciled with fee note.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_009",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_014",
+    "transactionRef": "TXN-2024-014",
+    "type": "fx-rate",
+    "severity": "high",
+    "description": "Significant FX rate variance: PSP/Cashier used spot rate ($3,800.00), ERP used closing rate ($3,760.00). Differential: 1.05% ($40.00).",
+    "variance": "$40.00",
+    "pspValue": {
+      "amount": "$3,800.00",
+      "description": "FX deposit — GBP to USD conversion",
+      "status": "Processed",
+      "timestamp": "2024-01-15 16:45:01",
+      "fxRate": 1.2714
+    },
+    "cashierValue": {
+      "amount": "$3,800.00",
+      "description": "Cashier recorded at spot rate",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 16:45:04",
+      "fxRate": 1.2714
+    },
+    "erpValue": {
+      "amount": "$3,760.00",
+      "description": "ERP used closing rate — $40 variance",
+      "status": "Verified",
+      "timestamp": "2024-01-15 16:45:10",
+      "fxRate": 1.2581
+    },
+    "suggestedResolution": "FX variance exceeds 1% tolerance. ERP used end-of-day closing rate instead of spot rate. Escalate to treasury team for review. Consider policy change to standardize FX rate source across systems.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_010",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_015",
+    "transactionRef": "TXN-2024-015",
+    "type": "missing",
+    "severity": "critical",
+    "description": "Cashier record missing for TXN-2024-015. PSP ($11,200.00) and ERP ($11,200.00) match, but cashier system was offline during transaction window.",
+    "variance": "N/A",
+    "pspValue": {
+      "amount": "$11,200.00",
+      "description": "Large withdrawal via bank transfer",
+      "status": "Processed",
+      "timestamp": "2024-01-15 17:00:01"
+    },
+    "cashierValue": null,
+    "erpValue": {
+      "amount": "$11,200.00",
+      "description": "Debit posted from PSP webhook",
+      "status": "Verified",
+      "timestamp": "2024-01-15 17:00:08"
+    },
+    "suggestedResolution": "Cashier system was offline at time of transaction. High-value transaction ($11,200) requires manual verification. Create cashier entry from PSP source data and escalate to finance team for approval.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  },
+  {
+    "id": "disc_011",
+    "reconciliationId": "recon_batch_2024_0115",
+    "recordId": "rec_018",
+    "transactionRef": "TXN-2024-018",
+    "type": "amount-mismatch",
+    "severity": "medium",
+    "description": "Cashier recorded $20 handling fee in amount. PSP ($14,500.00) and ERP ($14,500.00) agree, Cashier shows $14,520.00.",
+    "variance": "$20.00",
+    "pspValue": {
+      "amount": "$14,500.00",
+      "description": "Credit card deposit — premium client",
+      "status": "Processed",
+      "timestamp": "2024-01-15 17:45:01"
+    },
+    "cashierValue": {
+      "amount": "$14,520.00",
+      "description": "Cashier entry includes $20 handling fee",
+      "status": "Recorded",
+      "timestamp": "2024-01-15 17:45:04"
+    },
+    "erpValue": {
+      "amount": "$14,500.00",
+      "description": "ERP matches PSP net amount",
+      "status": "Verified",
+      "timestamp": "2024-01-15 17:45:08"
+    },
+    "suggestedResolution": "Cashier included $20 handling fee in the transaction amount instead of recording it separately. Adjust cashier entry to $14,500.00 and move $20 to fee field.",
+    "resolved": false,
+    "resolvedAt": null,
+    "resolvedBy": null
+  }
+]

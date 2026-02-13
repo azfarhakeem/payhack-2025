@@ -1,0 +1,282 @@
+{
+  "reconciliationId": "recon_batch_2024_0115",
+  "runAt": "2024-01-15T20:00:02Z",
+  "pspUploadId": "upload_psp_abc123",
+  "internalUploadId": "upload_int_def456",
+  "erpUploadId": "upload_erp_ghi789",
+  "summary": {
+    "totalTransactions": 1788,
+    "matched": 1245,
+    "partial": 432,
+    "unmatched": 89,
+    "discrepancies": 22,
+    "matchRate": 95.4
+  },
+  "records": [
+    {
+      "id": "rec_001",
+      "transactionRef": "TXN-2024-001",
+      "pspAmount": "$12,450.00",
+      "cashierAmount": "$12,450.00",
+      "erpAmount": "$12,450.00",
+      "matchScore": 100,
+      "status": "matched",
+      "matchType": "exact",
+      "variance": "$0.00",
+      "timestamp": "2024-01-15 09:30:00",
+      "legs": [
+        { "system": "PSP", "amount": "$12,450.00", "description": "Visa credit card deposit via payment gateway", "status": "Processed", "timestamp": "2024-01-15 09:30:02" },
+        { "system": "Cashier", "amount": "$12,450.00", "description": "Customer deposit recorded in cashier ledger", "status": "Recorded", "timestamp": "2024-01-15 09:30:05" },
+        { "system": "ERP", "amount": "$12,450.00", "description": "Revenue entry posted to general ledger", "status": "Verified", "timestamp": "2024-01-15 09:30:08" }
+      ]
+    },
+    {
+      "id": "rec_002",
+      "transactionRef": "TXN-2024-002",
+      "pspAmount": "$8,320.50",
+      "cashierAmount": "$8,320.00",
+      "erpAmount": "$8,320.50",
+      "matchScore": 95,
+      "status": "partial",
+      "matchType": "discrepancy",
+      "discrepancySubType": "amount-mismatch",
+      "variance": "$0.50",
+      "timestamp": "2024-01-15 10:15:00",
+      "legs": [
+        { "system": "PSP", "amount": "$8,320.50", "description": "Mastercard deposit processed by PSP", "status": "Processed", "timestamp": "2024-01-15 10:15:02" },
+        { "system": "Cashier", "amount": "$8,320.00", "description": "Amount rounded down during manual entry", "status": "Recorded", "timestamp": "2024-01-15 10:15:05" },
+        { "system": "ERP", "amount": "$8,320.50", "description": "Synced from PSP feed — original amount", "status": "Verified", "timestamp": "2024-01-15 10:15:10" }
+      ]
+    },
+    {
+      "id": "rec_003",
+      "transactionRef": "TXN-2024-003",
+      "pspAmount": "$5,200.00",
+      "cashierAmount": "$5,500.00",
+      "erpAmount": "$5,200.00",
+      "matchScore": 78,
+      "status": "discrepancy",
+      "matchType": "discrepancy",
+      "discrepancySubType": "amount-mismatch",
+      "variance": "$300.00",
+      "timestamp": "2024-01-15 11:00:00",
+      "legs": [
+        { "system": "PSP", "amount": "$5,200.00", "description": "Wire transfer received from client account", "status": "Processed", "timestamp": "2024-01-15 11:00:01" },
+        { "system": "Cashier", "amount": "$5,500.00", "description": "Cashier recorded with processing fee included", "status": "Recorded", "timestamp": "2024-01-15 11:00:04" },
+        { "system": "ERP", "amount": "$5,200.00", "description": "ERP entry matches PSP net amount", "status": "Verified", "timestamp": "2024-01-15 11:00:07" }
+      ]
+    },
+    {
+      "id": "rec_004",
+      "transactionRef": "TXN-2024-004",
+      "pspAmount": "$3,150.75",
+      "cashierAmount": "-",
+      "erpAmount": "$3,150.75",
+      "matchScore": 0,
+      "status": "unmatched",
+      "matchType": "unmatched",
+      "discrepancySubType": "missing",
+      "variance": "N/A",
+      "timestamp": "2024-01-15 11:45:00",
+      "legs": [
+        { "system": "PSP", "amount": "$3,150.75", "description": "e-Wallet withdrawal processed", "status": "Processed", "timestamp": "2024-01-15 11:45:01" },
+        { "system": "Cashier", "amount": "-", "description": "No matching record found — sync timeout", "status": "Missing", "timestamp": "-" },
+        { "system": "ERP", "amount": "$3,150.75", "description": "Debit posted from PSP API sync", "status": "Verified", "timestamp": "2024-01-15 11:45:06" }
+      ]
+    },
+    {
+      "id": "rec_005",
+      "transactionRef": "TXN-2024-005",
+      "pspAmount": "$15,890.00",
+      "cashierAmount": "$15,890.00",
+      "erpAmount": "$15,890.00",
+      "matchScore": 100,
+      "status": "matched",
+      "matchType": "exact",
+      "variance": "$0.00",
+      "timestamp": "2024-01-15 12:30:00",
+      "legs": [
+        { "system": "PSP", "amount": "$15,890.00", "description": "Bank transfer deposit — high value", "status": "Processed", "timestamp": "2024-01-15 12:30:01" },
+        { "system": "Cashier", "amount": "$15,890.00", "description": "Deposit confirmed by cashier supervisor", "status": "Recorded", "timestamp": "2024-01-15 12:30:03" },
+        { "system": "ERP", "amount": "$15,890.00", "description": "Posted to accounts receivable ledger", "status": "Verified", "timestamp": "2024-01-15 12:30:06" }
+      ]
+    },
+    {
+      "id": "rec_006",
+      "transactionRef": "TXN-2024-006",
+      "pspAmount": "$7,250.25",
+      "cashierAmount": "$7,250.25",
+      "erpAmount": "$7,251.00",
+      "matchScore": 92,
+      "status": "partial",
+      "matchType": "discrepancy",
+      "discrepancySubType": "fee",
+      "variance": "$0.75",
+      "timestamp": "2024-01-15 13:15:00",
+      "legs": [
+        { "system": "PSP", "amount": "$7,250.25", "description": "Crypto deposit converted to fiat", "status": "Processed", "timestamp": "2024-01-15 13:15:01" },
+        { "system": "Cashier", "amount": "$7,250.25", "description": "Cashier entry matches PSP amount", "status": "Recorded", "timestamp": "2024-01-15 13:15:04" },
+        { "system": "ERP", "amount": "$7,251.00", "description": "ERP includes $0.75 processing fee", "status": "Verified", "timestamp": "2024-01-15 13:15:08" }
+      ]
+    },
+    {
+      "id": "rec_007",
+      "transactionRef": "TXN-2024-007",
+      "pspAmount": "$2,100.00",
+      "cashierAmount": "$2,100.00",
+      "erpAmount": "-",
+      "matchScore": 60,
+      "status": "unmatched",
+      "matchType": "unmatched",
+      "discrepancySubType": "missing",
+      "variance": "N/A",
+      "timestamp": "2024-01-15 14:00:00",
+      "legs": [
+        { "system": "PSP", "amount": "$2,100.00", "description": "Debit card withdrawal via gateway", "status": "Processed", "timestamp": "2024-01-15 14:00:01" },
+        { "system": "Cashier", "amount": "$2,100.00", "description": "Withdrawal logged in cashier system", "status": "Recorded", "timestamp": "2024-01-15 14:00:03" },
+        { "system": "ERP", "amount": "-", "description": "No ERP record — API timeout during sync", "status": "Missing", "timestamp": "-" }
+      ]
+    },
+    {
+      "id": "rec_008",
+      "transactionRef": "TXN-2024-008",
+      "pspAmount": "$4,500.00",
+      "cashierAmount": "$4,500.00",
+      "erpAmount": "$4,480.00",
+      "matchScore": 88,
+      "status": "discrepancy",
+      "matchType": "discrepancy",
+      "discrepancySubType": "fx-rate",
+      "variance": "$20.00",
+      "timestamp": "2024-01-15 14:30:00",
+      "legs": [
+        { "system": "PSP", "amount": "$4,500.00", "description": "FX conversion — USD to EUR deposit", "status": "Processed", "timestamp": "2024-01-15 14:30:01" },
+        { "system": "Cashier", "amount": "$4,500.00", "description": "Cashier recorded at settlement rate", "status": "Recorded", "timestamp": "2024-01-15 14:30:04" },
+        { "system": "ERP", "amount": "$4,480.00", "description": "ERP booked at different FX rate (0.44% diff)", "status": "Verified", "timestamp": "2024-01-15 14:30:09" }
+      ]
+    },
+    {
+      "id": "rec_009",
+      "transactionRef": "TXN-2024-009",
+      "pspAmount": "$9,750.00",
+      "cashierAmount": "$9,750.00",
+      "erpAmount": "$9,720.00",
+      "matchScore": 90,
+      "status": "partial",
+      "matchType": "discrepancy",
+      "discrepancySubType": "timing",
+      "variance": "$30.00",
+      "timestamp": "2024-01-15 15:00:00",
+      "legs": [
+        { "system": "PSP", "amount": "$9,750.00", "description": "Batch settlement from payment processor", "status": "Processed", "timestamp": "2024-01-15 15:00:01" },
+        { "system": "Cashier", "amount": "$9,750.00", "description": "Settlement recorded same day", "status": "Recorded", "timestamp": "2024-01-15 15:00:03" },
+        { "system": "ERP", "amount": "$9,720.00", "description": "ERP posted next-day settlement value", "status": "Verified", "timestamp": "2024-01-15 15:00:12" }
+      ]
+    },
+    {
+      "id": "rec_010",
+      "transactionRef": "TXN-2024-010",
+      "pspAmount": "$6,200.00",
+      "cashierAmount": "$6,200.00",
+      "erpAmount": "$6,200.00",
+      "matchScore": 100,
+      "status": "matched",
+      "matchType": "exact",
+      "variance": "$0.00",
+      "timestamp": "2024-01-15 15:30:00",
+      "legs": [
+        { "system": "PSP", "amount": "$6,200.00", "description": "Credit card refund processed", "status": "Processed", "timestamp": "2024-01-15 15:30:01" },
+        { "system": "Cashier", "amount": "$6,200.00", "description": "Refund recorded in cashier journal", "status": "Recorded", "timestamp": "2024-01-15 15:30:04" },
+        { "system": "ERP", "amount": "$6,200.00", "description": "Contra entry posted to refunds ledger", "status": "Verified", "timestamp": "2024-01-15 15:30:07" }
+      ]
+    },
+    {
+      "id": "rec_011",
+      "transactionRef": "TXN-2024-011",
+      "pspAmount": "$18,300.00",
+      "cashierAmount": "$18,300.00",
+      "erpAmount": "$18,300.00",
+      "matchScore": 100,
+      "status": "matched",
+      "matchType": "exact",
+      "variance": "$0.00",
+      "timestamp": "2024-01-15 16:00:00",
+      "legs": [
+        { "system": "PSP", "amount": "$18,300.00", "description": "Wire transfer — institutional client", "status": "Processed", "timestamp": "2024-01-15 16:00:01" },
+        { "system": "Cashier", "amount": "$18,300.00", "description": "High-value deposit confirmed", "status": "Recorded", "timestamp": "2024-01-15 16:00:05" },
+        { "system": "ERP", "amount": "$18,300.00", "description": "Revenue posted to institutional account", "status": "Verified", "timestamp": "2024-01-15 16:00:09" }
+      ]
+    },
+    {
+      "id": "rec_012",
+      "transactionRef": "TXN-2024-012",
+      "pspAmount": "$1,450.00",
+      "cashierAmount": "$1,450.00",
+      "erpAmount": "$1,448.50",
+      "matchScore": 93,
+      "status": "partial",
+      "matchType": "discrepancy",
+      "discrepancySubType": "fee",
+      "variance": "$1.50",
+      "timestamp": "2024-01-15 16:15:00",
+      "legs": [
+        { "system": "PSP", "amount": "$1,450.00", "description": "Skrill deposit via PSP integration", "status": "Processed", "timestamp": "2024-01-15 16:15:01" },
+        { "system": "Cashier", "amount": "$1,450.00", "description": "E-wallet deposit logged", "status": "Recorded", "timestamp": "2024-01-15 16:15:03" },
+        { "system": "ERP", "amount": "$1,448.50", "description": "ERP deducted $1.50 gateway fee", "status": "Verified", "timestamp": "2024-01-15 16:15:08" }
+      ]
+    },
+    {
+      "id": "rec_013",
+      "transactionRef": "TXN-2024-013",
+      "pspAmount": "$22,100.00",
+      "cashierAmount": "$22,100.00",
+      "erpAmount": "$22,100.00",
+      "matchScore": 100,
+      "status": "matched",
+      "matchType": "exact",
+      "variance": "$0.00",
+      "timestamp": "2024-01-15 16:30:00",
+      "legs": [
+        { "system": "PSP", "amount": "$22,100.00", "description": "Bank transfer — VIP client deposit", "status": "Processed", "timestamp": "2024-01-15 16:30:01" },
+        { "system": "Cashier", "amount": "$22,100.00", "description": "VIP desk confirmed receipt", "status": "Recorded", "timestamp": "2024-01-15 16:30:03" },
+        { "system": "ERP", "amount": "$22,100.00", "description": "Posted to VIP accounts receivable", "status": "Verified", "timestamp": "2024-01-15 16:30:06" }
+      ]
+    },
+    {
+      "id": "rec_014",
+      "transactionRef": "TXN-2024-014",
+      "pspAmount": "$3,800.00",
+      "cashierAmount": "$3,800.00",
+      "erpAmount": "$3,760.00",
+      "matchScore": 85,
+      "status": "discrepancy",
+      "matchType": "discrepancy",
+      "discrepancySubType": "fx-rate",
+      "variance": "$40.00",
+      "timestamp": "2024-01-15 16:45:00",
+      "legs": [
+        { "system": "PSP", "amount": "$3,800.00", "description": "FX deposit — GBP to USD conversion", "status": "Processed", "timestamp": "2024-01-15 16:45:01" },
+        { "system": "Cashier", "amount": "$3,800.00", "description": "Cashier recorded at spot rate", "status": "Recorded", "timestamp": "2024-01-15 16:45:04" },
+        { "system": "ERP", "amount": "$3,760.00", "description": "ERP used closing rate — $40 variance", "status": "Verified", "timestamp": "2024-01-15 16:45:10" }
+      ]
+    },
+    {
+      "id": "rec_015",
+      "transactionRef": "TXN-2024-015",
+      "pspAmount": "$11,200.00",
+      "cashierAmount": "-",
+      "erpAmount": "$11,200.00",
+      "matchScore": 0,
+      "status": "unmatched",
+      "matchType": "unmatched",
+      "discrepancySubType": "missing",
+      "variance": "N/A",
+      "timestamp": "2024-01-15 17:00:00",
+      "legs": [
+        { "system": "PSP", "amount": "$11,200.00", "description": "Large withdrawal via bank transfer", "status": "Processed", "timestamp": "2024-01-15 17:00:01" },
+        { "system": "Cashier", "amount": "-", "description": "Cashier record not found — system offline", "status": "Missing", "timestamp": "-" },
+        { "system": "ERP", "amount": "$11,200.00", "description": "Debit posted from PSP webhook", "status": "Verified", "timestamp": "2024-01-15 17:00:08" }
+      ]
+    }
+  ]
+}

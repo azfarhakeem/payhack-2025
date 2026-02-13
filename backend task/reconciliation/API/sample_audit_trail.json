@@ -1,0 +1,182 @@
+[
+  {
+    "id": "AUD-001",
+    "timestamp": "2024-01-15 20:00:02",
+    "actor": "Reconciliation Engine",
+    "actorType": "system",
+    "action": "Batch Started",
+    "target": "BATCH-2024-0115",
+    "details": "Initiated 3-way reconciliation for 1,788 transactions across PSP, Cashier, and ERP systems",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-002",
+    "timestamp": "2024-01-15 20:00:15",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "Pattern Analysis",
+    "target": "BATCH-2024-0115",
+    "details": "Analyzed transaction patterns — identified 1,245 exact matches, 432 partial matches",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-003",
+    "timestamp": "2024-01-15 20:00:18",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "Anomaly Detected",
+    "target": "TXN-2024-003",
+    "details": "Flagged $300.00 variance between PSP ($5,200.00) and Cashier ($5,500.00) — classified as Amount Mismatch",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-004",
+    "timestamp": "2024-01-15 20:00:20",
+    "actor": "Reconciliation Engine",
+    "actorType": "system",
+    "action": "Batch Completed",
+    "target": "BATCH-2024-0115",
+    "details": "Reconciliation completed in 18 seconds — 22 discrepancies flagged for review",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-005",
+    "timestamp": "2024-01-15 20:05:30",
+    "actor": "Sarah Chen",
+    "actorType": "user",
+    "action": "Viewed Details",
+    "target": "TXN-2024-003",
+    "details": "Opened transaction details dialog — reviewed 3-way comparison and AI analysis",
+    "category": "review"
+  },
+  {
+    "id": "AUD-006",
+    "timestamp": "2024-01-15 20:06:12",
+    "actor": "Sarah Chen",
+    "actorType": "user",
+    "action": "Added Note",
+    "target": "TXN-2024-003",
+    "details": "Note: 'Cashier amount includes processing fee — verifying with cashier team'",
+    "category": "review"
+  },
+  {
+    "id": "AUD-007",
+    "timestamp": "2024-01-15 20:08:45",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "Auto-Resolved",
+    "target": "TXN-2024-006",
+    "details": "Automatically resolved fee discrepancy ($0.75) — matched against PSP fee schedule with 96% confidence",
+    "category": "resolution"
+  },
+  {
+    "id": "AUD-008",
+    "timestamp": "2024-01-15 20:10:00",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "Auto-Resolved",
+    "target": "TXN-2024-012",
+    "details": "Automatically resolved fee discrepancy ($1.50) — matched against ERP fee ledger with 94% confidence",
+    "category": "resolution"
+  },
+  {
+    "id": "AUD-009",
+    "timestamp": "2024-01-15 20:15:22",
+    "actor": "James Lee",
+    "actorType": "user",
+    "action": "Marked Resolved",
+    "target": "TXN-2024-009",
+    "details": "Manually resolved timing discrepancy — confirmed ERP had delayed settlement posting",
+    "category": "resolution"
+  },
+  {
+    "id": "AUD-010",
+    "timestamp": "2024-01-15 20:18:10",
+    "actor": "Sarah Chen",
+    "actorType": "user",
+    "action": "Escalated",
+    "target": "TXN-2024-004",
+    "details": "Escalated to Finance Team — cashier record missing, requires manual verification",
+    "category": "review"
+  },
+  {
+    "id": "AUD-011",
+    "timestamp": "2024-01-15 20:20:00",
+    "actor": "System Scheduler",
+    "actorType": "system",
+    "action": "Retry Sync",
+    "target": "TXN-2024-004",
+    "details": "Scheduled auto-retry sync for missing cashier record — next attempt in 5 minutes",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-012",
+    "timestamp": "2024-01-15 20:22:30",
+    "actor": "James Lee",
+    "actorType": "user",
+    "action": "Downloaded Report",
+    "target": "Reconciliation Report",
+    "details": "Exported full reconciliation report as PDF — 15 transactions included",
+    "category": "export"
+  },
+  {
+    "id": "AUD-013",
+    "timestamp": "2024-01-15 20:25:00",
+    "actor": "System Scheduler",
+    "actorType": "system",
+    "action": "Retry Sync",
+    "target": "TXN-2024-007",
+    "details": "Scheduled auto-retry sync for missing ERP record — API timeout on first attempt",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-014",
+    "timestamp": "2024-01-15 20:28:15",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "FX Rate Alert",
+    "target": "TXN-2024-008",
+    "details": "FX rate differential ($20.00) flagged — rate moved 0.44% between settlement and booking time",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-015",
+    "timestamp": "2024-01-15 20:30:00",
+    "actor": "Admin Config",
+    "actorType": "system",
+    "action": "Threshold Updated",
+    "target": "Auto-Resolve Policy",
+    "details": "Auto-resolve confidence threshold updated from 90% to 92% per compliance review",
+    "category": "config"
+  },
+  {
+    "id": "AUD-016",
+    "timestamp": "2024-01-15 20:35:42",
+    "actor": "Sarah Chen",
+    "actorType": "user",
+    "action": "Viewed Details",
+    "target": "TXN-2024-014",
+    "details": "Reviewed FX rate discrepancy — $40.00 variance between PSP and ERP",
+    "category": "review"
+  },
+  {
+    "id": "AUD-017",
+    "timestamp": "2024-01-15 20:38:00",
+    "actor": "AI Agent v2.4.1",
+    "actorType": "ai",
+    "action": "Risk Assessment",
+    "target": "BATCH-2024-0115",
+    "details": "Batch risk score calculated: 12/100 (Low) — 89 unmatched transactions within tolerance",
+    "category": "reconciliation"
+  },
+  {
+    "id": "AUD-018",
+    "timestamp": "2024-01-15 20:40:00",
+    "actor": "Sarah Chen",
+    "actorType": "user",
+    "action": "Downloaded Report",
+    "target": "Discrepancy Report",
+    "details": "Exported discrepancy report as PDF — 11 discrepancies included",
+    "category": "export"
+  }
+]

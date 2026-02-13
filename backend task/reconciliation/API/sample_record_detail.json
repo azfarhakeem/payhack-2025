@@ -1,0 +1,328 @@
+{
+  "_description": "Individual record detail — returned by GET /api/reconciliation/{reconciliationId}/records/{recordId}. This is the shape rendered by the modal dialog in ReconciliationTable.tsx (lines 378-676). Three example records are provided: matched, partial, and unmatched.",
+  "examples": [
+    {
+      "_label": "Matched record (score 100, exact match)",
+      "record": {
+        "id": "rec_001",
+        "transactionRef": "TXN-2024-001",
+        "pspAmount": "$12,450.00",
+        "cashierAmount": "$12,450.00",
+        "erpAmount": "$12,450.00",
+        "matchScore": 100,
+        "status": "matched",
+        "matchType": "exact",
+        "timestamp": "2024-01-15 09:30:00"
+      },
+      "systemComparison": [
+        {
+          "system": "PSP",
+          "icon": "CreditCard",
+          "color": "blue",
+          "amount": "$12,450.00",
+          "timestamp": "2024-01-15 09:30:02",
+          "status": "Processed"
+        },
+        {
+          "system": "Cashier",
+          "icon": "Building2",
+          "color": "green",
+          "amount": "$12,450.00",
+          "timestamp": "2024-01-15 09:30:05",
+          "status": "Recorded"
+        },
+        {
+          "system": "ERP",
+          "icon": "Database",
+          "color": "purple",
+          "amount": "$12,450.00",
+          "timestamp": "2024-01-15 09:30:08",
+          "status": "Verified"
+        }
+      ],
+      "fieldComparison": [
+        { "field": "Amount", "psp": "$12,450.00", "cashier": "$12,450.00", "erp": "$12,450.00", "variance": null },
+        { "field": "Timestamp", "psp": "2024-01-15 09:30:00", "cashier": "2024-01-15 09:30:00", "erp": "2024-01-15 09:30:00", "variance": null },
+        { "field": "Status", "psp": "Processed", "cashier": "Recorded", "erp": "Verified", "variance": null }
+      ],
+      "discrepancy": null,
+      "aiAnalysis": null,
+      "_note": "Matched records do not show AI analysis section in the UI"
+    },
+    {
+      "_label": "Partial match (score 80, timing discrepancy)",
+      "record": {
+        "id": "rec_009",
+        "transactionRef": "TXN-2024-009",
+        "pspAmount": "$9,750.00",
+        "cashierAmount": "$9,750.00",
+        "erpAmount": "$9,720.00",
+        "matchScore": 90,
+        "status": "partial",
+        "matchType": "discrepancy",
+        "discrepancySubType": "timing",
+        "timestamp": "2024-01-15 15:00:00"
+      },
+      "systemComparison": [
+        {
+          "system": "PSP",
+          "icon": "CreditCard",
+          "color": "blue",
+          "amount": "$9,750.00",
+          "timestamp": "2024-01-15 15:00:01",
+          "status": "Processed"
+        },
+        {
+          "system": "Cashier",
+          "icon": "Building2",
+          "color": "green",
+          "amount": "$9,750.00",
+          "timestamp": "2024-01-15 15:00:03",
+          "status": "Recorded"
+        },
+        {
+          "system": "ERP",
+          "icon": "Database",
+          "color": "purple",
+          "amount": "$9,720.00",
+          "timestamp": "2024-01-15 15:00:12",
+          "status": "Verified"
+        }
+      ],
+      "fieldComparison": [
+        { "field": "Amount", "psp": "$9,750.00", "cashier": "$9,750.00", "erp": "$9,720.00", "variance": "$30.00" },
+        { "field": "Timestamp", "psp": "2024-01-15 15:00:00", "cashier": "2024-01-15 15:00:00", "erp": "2024-01-15 15:00:00", "variance": null },
+        { "field": "Status", "psp": "Processed", "cashier": "Recorded", "erp": "Verified", "variance": "Mismatch" }
+      ],
+      "discrepancy": {
+        "type": "timing",
+        "detectedIssues": [
+          "PSP and ERP amounts differ"
+        ]
+      },
+      "aiAnalysis": {
+        "rootCause": {
+          "primaryCause": "Timing mismatch — transaction recorded at different times across systems",
+          "confidence": 94,
+          "confidenceLabel": "success",
+          "historicalPatternCount": 127,
+          "historicalNote": "Pattern matched with 127 similar historical cases"
+        },
+        "recommendation": {
+          "tier": "auto-reconcile",
+          "title": "Auto-reconciliation available",
+          "description": "High confidence match. AI agent can automatically resolve with approval.",
+          "actions": []
+        },
+        "timeline": [
+          {
+            "system": "PSP",
+            "icon": "CreditCard",
+            "color": "blue",
+            "title": "PSP Transaction Initiated",
+            "timestamp": "15:00:01",
+            "description": "Payment processed successfully via payment gateway",
+            "aiInsight": "AI: Normal processing time detected",
+            "aiInsightType": "success"
+          },
+          {
+            "system": "Cashier",
+            "icon": "Building2",
+            "color": "green",
+            "title": "Cashier System Updated",
+            "timestamp": "15:00:03",
+            "description": "Amount recorded in cashier system",
+            "aiInsight": "AI: Rounding pattern detected (2 sec delay)",
+            "aiInsightType": "warning"
+          },
+          {
+            "system": "ERP",
+            "icon": "Database",
+            "color": "purple",
+            "title": "ERP System Synchronized",
+            "timestamp": "15:00:12",
+            "description": "Amount recorded from PSP feed",
+            "aiInsight": "AI: Delayed sync — 11 second gap detected",
+            "aiInsightType": "warning"
+          },
+          {
+            "system": "AI",
+            "icon": "TrendingUp",
+            "color": "gradient",
+            "title": "AI Agent Analysis Complete",
+            "timestamp": "15:00:13",
+            "description": "Root cause identified",
+            "summary": {
+              "matchConfidence": "90%",
+              "similarPatterns": "127 cases",
+              "recommendedAction": "Auto-reconciliation"
+            }
+          },
+          {
+            "system": "Summary",
+            "icon": "Clock",
+            "color": "muted",
+            "title": "Timeline Summary",
+            "totalDuration": "12 seconds",
+            "systemsInvolved": "3 platforms"
+          }
+        ],
+        "agenticInsights": {
+          "patternRecognition": {
+            "label": "Pattern Recognition",
+            "detail": "AI detected similar patterns in 42 recent transactions"
+          },
+          "historicalSuccessRate": {
+            "label": "Historical Success Rate",
+            "rate": "92.3%",
+            "detail": "92.3% of similar cases were resolved automatically"
+          },
+          "anomalyDetection": {
+            "label": "Anomaly Detection",
+            "detail": "Transaction within expected variance range"
+          }
+        },
+        "modelVersion": "v2.4.1"
+      }
+    },
+    {
+      "_label": "Unmatched record (score 0, missing cashier)",
+      "record": {
+        "id": "rec_004",
+        "transactionRef": "TXN-2024-004",
+        "pspAmount": "$3,150.75",
+        "cashierAmount": "-",
+        "erpAmount": "$3,150.75",
+        "matchScore": 0,
+        "status": "unmatched",
+        "matchType": "unmatched",
+        "discrepancySubType": "missing",
+        "timestamp": "2024-01-15 11:45:00"
+      },
+      "systemComparison": [
+        {
+          "system": "PSP",
+          "icon": "CreditCard",
+          "color": "blue",
+          "amount": "$3,150.75",
+          "timestamp": "2024-01-15 11:45:01",
+          "status": "Processed"
+        },
+        {
+          "system": "Cashier",
+          "icon": "Building2",
+          "color": "green",
+          "amount": "-",
+          "timestamp": "-",
+          "status": "Not Found"
+        },
+        {
+          "system": "ERP",
+          "icon": "Database",
+          "color": "purple",
+          "amount": "$3,150.75",
+          "timestamp": "2024-01-15 11:45:06",
+          "status": "Verified"
+        }
+      ],
+      "fieldComparison": [
+        { "field": "Amount", "psp": "$3,150.75", "cashier": "-", "erp": "$3,150.75", "variance": "N/A" },
+        { "field": "Timestamp", "psp": "2024-01-15 11:45:00", "cashier": "-", "erp": "2024-01-15 11:45:00", "variance": null },
+        { "field": "Status", "psp": "Processed", "cashier": "Not Found", "erp": "Verified", "variance": "Mismatch" }
+      ],
+      "discrepancy": {
+        "type": "missing",
+        "detectedIssues": [
+          "Missing cashier record"
+        ]
+      },
+      "aiAnalysis": {
+        "rootCause": {
+          "primaryCause": "Network timeout during system sync (API error detected)",
+          "confidence": 85,
+          "confidenceLabel": "warning",
+          "historicalPatternCount": null,
+          "historicalNote": "Retry mechanism available — auto-sync scheduled in 5 minutes"
+        },
+        "recommendation": {
+          "tier": "manual-review",
+          "title": "Manual review required",
+          "description": "Significant discrepancy detected. AI has flagged for human verification.",
+          "actions": [
+            "Escalate to Finance Team",
+            "Create Jira Ticket"
+          ]
+        },
+        "timeline": [
+          {
+            "system": "PSP",
+            "icon": "CreditCard",
+            "color": "blue",
+            "title": "PSP Transaction Initiated",
+            "timestamp": "11:45:01",
+            "description": "e-Wallet withdrawal processed",
+            "aiInsight": "AI: Normal processing time detected",
+            "aiInsightType": "success"
+          },
+          {
+            "system": "Cashier",
+            "icon": "Building2",
+            "color": "green",
+            "title": "Cashier System — No Response",
+            "timestamp": "-",
+            "description": "Sync timeout — no record created",
+            "aiInsight": "AI: Network timeout detected at cashier endpoint",
+            "aiInsightType": "error"
+          },
+          {
+            "system": "ERP",
+            "icon": "Database",
+            "color": "purple",
+            "title": "ERP System Synchronized",
+            "timestamp": "11:45:06",
+            "description": "Debit posted from PSP API sync",
+            "aiInsight": "AI: Direct API sync verified",
+            "aiInsightType": "success"
+          },
+          {
+            "system": "AI",
+            "icon": "TrendingUp",
+            "color": "gradient",
+            "title": "AI Agent Analysis Complete",
+            "timestamp": "11:45:07",
+            "description": "Root cause identified — missing system record",
+            "summary": {
+              "matchConfidence": "0%",
+              "similarPatterns": "N/A",
+              "recommendedAction": "Manual review"
+            }
+          },
+          {
+            "system": "Summary",
+            "icon": "Clock",
+            "color": "muted",
+            "title": "Timeline Summary",
+            "totalDuration": "6 seconds (incomplete)",
+            "systemsInvolved": "2 of 3 platforms"
+          }
+        ],
+        "agenticInsights": {
+          "patternRecognition": {
+            "label": "Pattern Recognition",
+            "detail": "AI detected similar patterns in 8 recent transactions"
+          },
+          "historicalSuccessRate": {
+            "label": "Historical Success Rate",
+            "rate": "76.8%",
+            "detail": "76.8% of similar cases were resolved automatically"
+          },
+          "anomalyDetection": {
+            "label": "Anomaly Detection",
+            "detail": "Unusual variance detected — outside normal distribution"
+          }
+        },
+        "modelVersion": "v2.4.1"
+      }
+    }
+  ]
+}
