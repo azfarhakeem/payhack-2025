@@ -11,6 +11,8 @@ masa 2 jam (default settings), selepas 2 jam, kita akan push juga source file da
 
 Kemudian sebabkan PSP bermasalah biasanya guna format yang sama (sama ada file title lebih kurang sama), so setting ini untuk kali pertama je. kali kedua system kita akan ingat dan tak perlu buat auto mapping lagi.
 
+Please refer this link: [Klik sini](https://deriv-hackathon-tideline.vercel.app/upload)
+
 ## The Problem
 
 When users upload transaction files (CSV/JSON), every system uses **different column names** for the same data:
