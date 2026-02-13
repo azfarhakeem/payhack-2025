@@ -1,0 +1,73 @@
+{
+  "uploadId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "stakeholder": "Payment Service Providers",
+  "systemKey": "PSP",
+  "result": {
+    "transactions": [
+      {
+        "id": "PSP-0-1707820200000",
+        "systemId": "PSP-AAA111BBB222",
+        "reference": "REF-0001",
+        "grossAmount": 1000.0,
+        "netAmount": 980.0,
+        "fee": 20.0,
+        "currency": "MYR",
+        "transactionDate": "2026-02-01T10:00:00",
+        "settlementDate": "2026-02-02T10:00:00",
+        "clientId": "CLT-1001",
+        "clientName": "Alpha Sdn Bhd",
+        "description": "Payment from Alpha Sdn Bhd via card",
+        "paymentMethod": "card",
+        "settlementBank": "Maybank",
+        "bankCountry": "MY",
+        "fxRate": null,
+        "stakeholder": "Payment Service Providers",
+        "status": "validated",
+        "confidence": 0.95,
+        "date": "2026-02-01T10:00:00",
+        "amount": 1000.0
+      }
+    ],
+    "format": "csv",
+    "detectedColumns": [
+      "psp_txn_id",
+      "merchant_ref",
+      "gross_amount",
+      "currency",
+      "processing_fee",
+      "net_payout",
+      "transaction_date",
+      "settlement_date",
+      "client_id",
+      "client_name",
+      "description",
+      "status",
+      "payment_method",
+      "settlement_bank",
+      "bank_country",
+      "fx_rate"
+    ],
+    "rowCount": 10,
+    "errors": []
+  },
+  "mappings": [
+    { "detectedColumn": "psp_txn_id", "mapsTo": "System ID", "confidence": 0.98, "confirmed": false },
+    { "detectedColumn": "merchant_ref", "mapsTo": "Transaction Ref", "confidence": 0.97, "confirmed": false },
+    { "detectedColumn": "gross_amount", "mapsTo": "Gross Amount", "confidence": 0.96, "confirmed": false },
+    { "detectedColumn": "currency", "mapsTo": "Currency", "confidence": 0.99, "confirmed": false },
+    { "detectedColumn": "processing_fee", "mapsTo": "Processing Fee", "confidence": 0.95, "confirmed": false },
+    { "detectedColumn": "net_payout", "mapsTo": "Net Amount", "confidence": 0.93, "confirmed": false },
+    { "detectedColumn": "transaction_date", "mapsTo": "Transaction Date", "confidence": 0.97, "confirmed": false },
+    { "detectedColumn": "settlement_date", "mapsTo": "Settlement Date", "confidence": 0.96, "confirmed": false },
+    { "detectedColumn": "client_id", "mapsTo": "Client ID", "confidence": 0.99, "confirmed": false },
+    { "detectedColumn": "client_name", "mapsTo": "Client Name", "confidence": 0.99, "confirmed": false },
+    { "detectedColumn": "description", "mapsTo": "Description", "confidence": 0.98, "confirmed": false },
+    { "detectedColumn": "status", "mapsTo": "Status", "confidence": 0.99, "confirmed": false },
+    { "detectedColumn": "payment_method", "mapsTo": "Payment Method", "confidence": 0.97, "confirmed": false },
+    { "detectedColumn": "settlement_bank", "mapsTo": "Settlement Bank", "confidence": 0.94, "confirmed": false },
+    { "detectedColumn": "bank_country", "mapsTo": "Bank Country", "confidence": 0.95, "confirmed": false },
+    { "detectedColumn": "fx_rate", "mapsTo": "FX Rate", "confidence": 0.92, "confirmed": false }
+  ],
+  "mappingSource": "llm",
+  "createdAt": "2026-02-13T10:00:00.000Z"
+}
